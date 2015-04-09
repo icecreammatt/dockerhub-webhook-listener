@@ -58,6 +58,7 @@ func Serve(config *Config) error {
 }
 
 func reqHandler(w http.ResponseWriter, r *http.Request) {
+	log.Print("reqHandlerCalled...")
 	if authenticateRequest(r) {
 		decoder := json.NewDecoder(r.Body)
 		var imgConfig HubMessage
@@ -68,6 +69,7 @@ func reqHandler(w http.ResponseWriter, r *http.Request) {
 			log.Print(err)
 			return
 		}
+		log.Print("handling message")
 		go handleMsg(imgConfig)
 		return
 	}
@@ -82,10 +84,12 @@ func Log(handler http.Handler) http.Handler {
 }
 
 func handleMsg(img HubMessage) {
+	log.Print("handleMsg")
 	msgHandlers.Call(img)
 }
 
 func authenticateRequest(r *http.Request) bool {
+	log.Print("authenticateRequest\n")
 	key := r.URL.Query().Get("apikey")
 	for _, cfgKey := range ServerConfig.Apikeys.Key {
 		if key == cfgKey {
