@@ -9,7 +9,8 @@ import (
 var msgHandlers Registry
 
 type HubMessage struct {
-	Repository struct {
+	CallbackUrl string `json:"callback_url"`
+	Repository  struct {
 		Status    string
 		RepoUrl   string `json:"repo_url"`
 		Owner     string
