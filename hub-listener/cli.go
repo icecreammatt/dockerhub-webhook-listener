@@ -9,7 +9,7 @@ import (
 	server "github.com/cpuguy83/dockerhub-webhook-listener"
 )
 
-var listenAddr = flag.String("listen", "localhost:8080", "<address>:<port> to listen on")
+var listenAddr = flag.String("listen", "0.0.0.0:8080", "<address>:<port> to listen on")
 var configFile = flag.String("config-file", "", "Location of handler config file")
 
 func main() {
