@@ -29,7 +29,6 @@ type HubMessage struct {
 
 type Config struct {
 	ListenAddr string
-	Mailgun    mailGunConfig
 	Tls        struct {
 		Key  string
 		Cert string
